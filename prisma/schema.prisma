@@ -23,23 +23,23 @@ model User {
 
 model TestResult {
   id            Int            @id @default(autoincrement())
-  userId        Int
-  physicalTest  PhysicalTest?
+  userId        Int            @unique
+  physicalTest  PhysicalTest? 
   theoryTest    TheoryTest?
   practicalTest PracticalTest?
   status        TestStatus     @default(PENDING)
   updatedAt     DateTime       @updatedAt
-  user          User           @relation(fields: [userId], references: [id])
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model PhysicalTest {
   id                 Int        @id @default(autoincrement())
-  colorBlindTest     Boolean
+  colorBlindTest     Boolean 
   visionLongTest     Boolean
   visionTiltTest     Boolean
   reflexResponseTest Boolean
-  passed             Boolean
-  testResult         TestResult @relation(fields: [testResultId], references: [id])
+  passed             Boolean 
+  testResult         TestResult @relation(fields: [testResultId], references: [id], onDelete: Cascade)
   testResultId       Int        @unique
 }
 
@@ -50,14 +50,14 @@ model TheoryTest {
   rightOfWay   Int
   totalScore   Float
   passed       Boolean
-  testResult   TestResult @relation(fields: [testResultId], references: [id])
+  testResult   TestResult @relation(fields: [testResultId], references: [id], onDelete: Cascade)
   testResultId Int        @unique
 }
 
 model PracticalTest {
   id           Int        @id @default(autoincrement())
   passed       Boolean
-  testResult   TestResult @relation(fields: [testResultId], references: [id])
+  testResult   TestResult @relation(fields: [testResultId], references: [id], onDelete: Cascade)
   testResultId Int        @unique
 }
 

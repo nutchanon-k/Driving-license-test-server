@@ -1,5 +1,5 @@
 
-module.exports.evaluateStatus = (physicalTest, theoryTest, practicalTest) => {
+const evaluateStatus = (physicalTest, theoryTest, practicalTest) => {
     // ประเมินผลการทดสอบร่างกาย
     const physicalPassed = 
       [physicalTest.colorBlindTest, physicalTest.visionLongTest, physicalTest.visionTiltTest, physicalTest.reflexResponseTest].filter(Boolean).length >= 3;
@@ -14,5 +14,6 @@ module.exports.evaluateStatus = (physicalTest, theoryTest, practicalTest) => {
     return { physicalPassed, theoryPassed, practicalPassed };
   };
   
+  module.exports = evaluateStatus;
 
   

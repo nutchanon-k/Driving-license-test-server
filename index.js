@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
+const Morgan = require("morgan");
 const userRoutes = require('./routes/userRoutes');
 const testResultRoutes = require('./routes/testResultRoutes');
 const errorMiddleware = require("./middlewares/error-middleware");
@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(Morgan("dev"));
 
 app.use('/api/users', userRoutes);
 app.use('/api/testresults', testResultRoutes);
