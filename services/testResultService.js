@@ -105,8 +105,8 @@ const createTestResult = async (userId, physicalTestData, theoryTestData, practi
       where: {
         user: {
           OR: [
-            { firstName: { contains: query, mode: 'insensitive' } },
-            { lastName: { contains: query, mode: 'insensitive' } },
+            { firstName: { contains: query} },
+            { lastName: { contains: query} },
           ],
         },
       },
